@@ -15,6 +15,10 @@ function __bobthefish_glyphs -S -d 'Define glyphs used by bobthefish'
   set -x bg_job_glyph            '% '
   set -x hg_glyph                \u263F
 
+  # Directory glyphs
+  set -x docker_glyph            ' '
+  set -x ansible_glyph           ' '
+
   # Python glyphs
   set -x superscript_glyph       \u00B9 \u00B2 \u00B3
   set -x virtualenv_glyph        \u25F0

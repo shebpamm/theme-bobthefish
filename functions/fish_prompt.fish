@@ -379,6 +379,13 @@ function __bobthefish_path_segment -S -a segment_dir -d 'Display a shortened for
             set directory (__bobthefish_basename "$segment_dir")
     end
 
+    for var in parent directory
+      for glyph in ansible docker
+        set -l glyph_var $glyph"_glyph"
+        set $var (string replace -a $glyph $$glyph_var $$var)
+      end
+    end
+
     echo -n $parent
     set_color -b $segment_basename_color
     echo -ns $directory ' '
@@ -962,7 +969,7 @@ function __bobthefish_prompt_nix -S -d 'Display current nix environment'
     and return
 
     __bobthefish_start_segment $color_nix
-    echo -ns $nix_glyph $IN_NIX_SHELL ' '
+    echo -ns $nix_glyph ' '
 
     set_color normal
 end
