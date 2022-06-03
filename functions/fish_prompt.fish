@@ -65,9 +65,7 @@ function __bobthefish_dirname -d 'basically dirname, but faster'
 end
 
 function __bobthefish_pwd -d 'Get a normalized $PWD'
-    # The pwd builtin accepts `-P` on at least Fish 3.x, but fall back to $PWD if that doesn't work
-    builtin pwd -P 2>/dev/null
-    or echo $PWD
+    echo $PWD
 end
 
 # Note that for fish < 3.0 this falls back to unescaped, rather than trying to do something clever /shrug
