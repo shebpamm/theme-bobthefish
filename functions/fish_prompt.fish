@@ -380,7 +380,7 @@ function __bobthefish_path_segment -S -a segment_dir -d 'Display a shortened for
     end
 
     for var in parent directory
-      for glyph in ansible docker
+      for glyph in ansible docker terraform
         set -l glyph_var $glyph"_glyph"
         set $var (string replace -a $glyph $$glyph_var $$var)
       end
