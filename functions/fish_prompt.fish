@@ -646,8 +646,10 @@ function __bobthefish_prompt_k8s_context -S -d 'Show current Kubernetes context'
     and [ -z $namespace -o "$namespace" = 'default' ]
     and return
 
-    set -l segment $k8s_glyph ' ' $context
-    [ -n "$namespace" ]
+    set -l segment $k8s_glyph ' '
+    [ "$context" != 'default' ]
+    and set segment $segment $context
+    [ "$namespace" != 'default' ]
     and set segment $segment ':' $namespace
 
     __bobthefish_start_segment $color_k8s
@@ -902,7 +904,7 @@ end
 
 function __bobthefish_prompt_find_file_up -S -d 'Find file(s), going up the parent directories'
     set -l dir "$argv[1]"
-    set -l files $argv[2..]
+    set -l files $argv[2..-1]
 
     if test -z "$dir"
         or test -z "$files"
