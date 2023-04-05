@@ -1019,6 +1019,7 @@ function __bobthefish_prompt_git -S -a git_root_dir -a real_pwd -d 'Display the 
         set -l show_dirty (command git config --bool bash.showDirtyState 2>/dev/null)
         if [ "$show_dirty" != 'false' ]
             set dirty (command git diff --no-ext-diff --quiet --exit-code 2>/dev/null; or echo -n "$git_dirty_glyph")
+            set dirty (not string length -q (command git status --porcelain --untracked-files=no); or echo -n "$git_dirty_glyph")
             if [ "$dirty" -a "$theme_display_git_dirty_verbose" = 'yes' ]
                 set dirty "$dirty"(__bobthefish_git_dirty_verbose)
             end
