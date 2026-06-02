@@ -375,15 +375,18 @@ function __bobthefish_path_segment -S -a segment_dir -d 'Display a shortened for
         case "$HOME"
             set directory '~'
         case '*'
-            set parent (__bobthefish_pretty_parent "$segment_dir")
+            set -l display_dir $segment_dir
+            for glyph in ansible docker terraform iac smartly
+                set -l glyph_var $glyph"_glyph"
+                set display_dir (string replace -r -a "/$glyph/" /$$glyph_var/ $display_dir)
+            end
+            set parent (__bobthefish_pretty_parent "$display_dir")
             set directory (__bobthefish_basename "$segment_dir")
     end
 
-    for var in parent directory
-      for glyph in ansible docker terraform iac smartly
+    for glyph in ansible docker terraform iac smartly
         set -l glyph_var $glyph"_glyph"
-        set $var (string replace -r -a "^$glyph\$" $$glyph_var $$var)
-      end
+        set directory (string replace -r -a "^$glyph\$" $$glyph_var $directory)
     end
 
     echo -n $parent
