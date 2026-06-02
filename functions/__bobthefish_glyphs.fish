@@ -20,6 +20,7 @@ function __bobthefish_glyphs -S -d 'Define glyphs used by bobthefish'
   set -x ansible_glyph           ' '
   set -x terraform_glyph         ' '
   set -x iac_glyph               ' '
+  set -x smartly_glyph           ' '
 
   # Python glyphs
   set -x superscript_glyph       \u00B9 \u00B2 \u00B3
